@@ -25,6 +25,10 @@ class TaskDados extends InheritedWidget {
 
   @override
   bool updateShouldNotify(TaskDados oldWidget) {
-    return true;
+    ///oldWidget.listaTask.length está pegando o tamanho atualizado e verificando
+    ///com o tamanho atual listaTask.length;
+    ///Com isso, irá notificar se o tamanho for alturado com true
+    ///e se não for alturado, com false
+    return oldWidget.listaTask.length != listaTask.length;
   }
 }

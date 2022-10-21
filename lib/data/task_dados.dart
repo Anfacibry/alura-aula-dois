@@ -7,16 +7,25 @@ class TaskDados extends InheritedWidget {
     required Widget child,
   }) : super(key: key, child: child);
 
+  ///Armazenamento de dados local com uma lista que contem
+  ///nome, foto e dificuldade
   final List<Task> listaTask = [
-    const Task('Aprender Flutter', 'assets/images/dash.png', 3),
-    const Task('Andar de Bike', 'assets/images/bike.webp', 2),
-    const Task('Meditar', 'assets/images/meditar.jpeg', 5),
-    const Task('Ler', 'assets/images/livro.jpg', 4),
-    const Task('Jogar', 'assets/images/jogar.jpg', 1),
+    const Task(
+      nome: 'Aprender Flutter',
+      foto: 'assets/images/dash.png',
+      dificuldade: 3,
+    ),
+    const Task(
+        nome: 'Andar de Bike', foto: 'assets/images/bike.webp', dificuldade: 2),
+    const Task(
+        nome: 'Meditar', foto: 'assets/images/meditar.jpeg', dificuldade: 5),
+    const Task(nome: 'Ler', foto: 'assets/images/livro.jpg', dificuldade: 4),
+    const Task(nome: 'Jogar', foto: 'assets/images/jogar.jpg', dificuldade: 1),
   ];
 
-  void novoTask(String nome, String imagem, int dificuldade) {
-    listaTask.add(Task(nome, imagem, dificuldade));
+  void novoTask(String nomePego, String imagem, int dificuldadePego) {
+    listaTask
+        .add(Task(nome: nomePego, foto: imagem, dificuldade: dificuldadePego));
   }
 
   static TaskDados? of(BuildContext context) {

@@ -16,11 +16,25 @@ class TaskDados extends InheritedWidget {
       dificuldade: 3,
     ),
     const Task(
-        nome: 'Andar de Bike', foto: 'assets/images/bike.webp', dificuldade: 2),
+      nome: 'Andar de Bike',
+      foto: 'assets/images/bike.webp',
+      dificuldade: 2,
+    ),
     const Task(
-        nome: 'Meditar', foto: 'assets/images/meditar.jpeg', dificuldade: 5),
-    const Task(nome: 'Ler', foto: 'assets/images/livro.jpg', dificuldade: 4),
-    const Task(nome: 'Jogar', foto: 'assets/images/jogar.jpg', dificuldade: 1),
+      nome: 'Meditar',
+      foto: 'assets/images/meditar.jpeg',
+      dificuldade: 5,
+    ),
+    const Task(
+      nome: 'Ler',
+      foto: 'assets/images/livro.jpg',
+      dificuldade: 4,
+    ),
+    const Task(
+      nome: 'Jogar',
+      foto: 'assets/images/jogar.jpg',
+      dificuldade: 1,
+    ),
   ];
 
   void novoTask(String nomePego, String imagem, int dificuldadePego) {

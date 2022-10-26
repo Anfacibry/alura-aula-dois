@@ -19,6 +19,9 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
+
+  ///Metodo que certifica se o link colocado para adicionar a foto
+  ///é valido ou não, o mesmo tem que constar com um http
   bool assetsOuNetwork() {
     if (widget.foto.contains("http")) {
       return false;
@@ -32,31 +35,48 @@ class _TaskState extends State<Task> {
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: [
+          ///Container que fica na parte inferior do card para indicar o nivel
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4), color: Colors.blue),
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.blue,
+                boxShadow: const [
+                  ///Colocando sobra no container
+                  BoxShadow(
+                    offset: Offset(0, 5),
+                    blurRadius: 5.0,
+                    color: Colors.black54,
+                  ),
+                ]),
             height: 140,
           ),
           Column(
             children: [
+              ///Container que serve para ser todo o card com as informações da foto
+              ///Avaliações e up
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   color: Colors.white,
                 ),
                 height: 100,
+
+                ///Coluna horizontal responsavem pela imagem, nome, avaliações e botão
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    ///Container para definir o tamanho da imagem
                     Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
+                      decoration: const BoxDecoration(
+                        borderRadius:
+                            BorderRadius.only(topLeft: Radius.circular(4)),
                         color: Colors.black26,
                       ),
                       width: 72,
                       height: 100,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4)),
                         child: assetsOuNetwork()
                             ? Image.asset(
                                 widget.foto,

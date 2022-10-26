@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 
-class Difficulty extends StatelessWidget {
-
+class Difficulty extends StatefulWidget {
   final int dificultyLevel;
 
   const Difficulty({
@@ -11,33 +9,38 @@ class Difficulty extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<Difficulty> createState() => _DifficultyState();
+}
+
+class _DifficultyState extends State<Difficulty> {
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Icon(
           Icons.star,
           size: 15,
-          color: (dificultyLevel >= 1) ? Colors.blue : Colors.blue[100],
+          color: (widget.dificultyLevel >= 1) ? Colors.blue : Colors.blue[100],
         ),
         Icon(
           Icons.star,
           size: 15,
-          color: (dificultyLevel >= 2) ? Colors.blue : Colors.blue[100],
+          color: (widget.dificultyLevel >= 2) ? Colors.blue : Colors.blue[100],
         ),
         Icon(
           Icons.star,
           size: 15,
-          color: (dificultyLevel >= 3) ? Colors.blue : Colors.blue[100],
+          color: (widget.dificultyLevel >= 3) ? Colors.blue : Colors.blue[100],
         ),
         Icon(
           Icons.star,
           size: 15,
-          color: (dificultyLevel >= 4) ? Colors.blue : Colors.blue[100],
+          color: (widget.dificultyLevel >= 4) ? Colors.blue : Colors.blue[100],
         ),
         Icon(
           Icons.star,
           size: 15,
-          color: (dificultyLevel >= 5) ? Colors.blue : Colors.blue[100],
+          color: (widget.dificultyLevel >= 5) ? Colors.blue : Colors.blue[100],
         ),
       ],
     );

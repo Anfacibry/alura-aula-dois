@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nosso_primeiro_projeto/data/task_dados.dart';
+import 'package:nosso_primeiro_projeto/components/task.dart';
+import 'package:nosso_primeiro_projeto/data/task_dao.dart';
 
 class CampoTexto extends StatefulWidget {
   final BuildContext contextoPego;
@@ -18,10 +19,10 @@ class _CampoTextoState extends State<CampoTexto> {
   final TextEditingController _controllerImage = TextEditingController();
 
   bool condicao(String? temNome) {
-    if (temNome != null && temNome.isEmpty) {
-      return false;
+    if (temNome != null && temNome.isNotEmpty) {
+      return true;
     }
-    return true;
+    return false;
   }
 
   ///Este é a chave Global do Widget Form
@@ -56,7 +57,7 @@ class _CampoTextoState extends State<CampoTexto> {
                       controller: _controllerNome,
                       keyboardType: TextInputType.name,
                       validator: (temNome) {
-                        if (condicao(temNome)) {
+                        if (!condicao(temNome)) {
                           return "Digite um nome";
                         }
                         return null;
@@ -83,9 +84,11 @@ class _CampoTextoState extends State<CampoTexto> {
 
                       ///validação lógica do TextFormField
                       validator: (dificuldade) {
-                        if (condicao(dificuldade) ||
-                            int.parse(_controllerDificuldade.text) < 1 ||
-                            int.parse(_controllerDificuldade.text) > 5) {
+                        final int _dificuldadePega =
+                            int.parse(_controllerDificuldade.text);
+                        if (!condicao(dificuldade) ||
+                            _dificuldadePega < 1 ||
+                            _dificuldadePega > 5) {
                           return "Digite uma dificuldade entre 1 e 5";
                         }
                         return null;
@@ -112,7 +115,7 @@ class _CampoTextoState extends State<CampoTexto> {
                         setState(() {});
                       },
                       validator: (url) {
-                        if (condicao(url)) {
+                        if (!condicao(url)) {
                           return "Digite uma URL válida";
                         }
                         return null;
@@ -155,11 +158,14 @@ class _CampoTextoState extends State<CampoTexto> {
                   ElevatedButton(
                     onPressed: () {
                       if (_keyGlobal.currentState!.validate()) {
-                        TaskDados.of(widget.contextoPego)!.novoTask(
-                          _controllerNome.text,
-                          _controllerImage.text,
-                          int.parse(_controllerDificuldade.text),
+                        TaskDao().salvar(
+                          Task(
+                            nome: _controllerNome.text,
+                            foto: _controllerImage.text,
+                            dificuldade: int.parse(_controllerDificuldade.text),
+                          ),
                         );
+
                         SnackBar snackBar = const SnackBar(
                           content: Text(
                             "Salvando foto",
